@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipeline-integrity-tools"
+version = "0.1.0"
+description = "Pipeline integrity tools for ILI corrosion data and Bayesian analysis workflows."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Pipeline Integrity Tools contributors"}]
+
+[tool.setuptools.packages.find]
+include = ["pipeline_integrity_tools*"]
