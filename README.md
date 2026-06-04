@@ -24,12 +24,32 @@ The package now returns side-by-side results for:
 > the governing code and a qualified pipeline integrity engineer before making
 > operating or repair decisions.
 
+## Detailed user guide
+
+See [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) for a detailed workflow covering package layout, JSON inputs, CLI usage, CSV output, units, Python API examples, and method-specific notes.
+
 ## Installation for development
 
 ```bash
 python -m pip install -e .
 ```
 
+
+
+## Package layout
+
+The assessment models are split by method so each file name matches the method
+inside it:
+
+- `pipeline_integrity_tools/b31g.py`: Original B31G and Modified B31G.
+- `pipeline_integrity_tools/dnv.py`: DNV RP-F101.
+- `pipeline_integrity_tools/rstreng.py`: RSTRENG effective-area.
+- `pipeline_integrity_tools/models.py`: shared input/result dataclasses and
+  common calculation helpers.
+- `pipeline_integrity_tools/analysis.py`: side-by-side comparison helpers that
+  call all methods together.
+- `pipeline_integrity_tools/config.py`: JSON input-file loading, batch runs, and
+  CSV output.
 
 ## Run one pipeline from one input file
 
@@ -112,12 +132,12 @@ stress units used for the other material strengths.
 
 ## API overview
 
-- `CorrosionFeature`: pipe, material, and corrosion-feature inputs.
-- `original_b31g(feature, safety_factor=0.72)`: original B31G result.
-- `modified_b31g(feature, safety_factor=0.72, flow_stress_increment=10_000)`: Modified B31G result.
-- `dnv_rp_f101(feature, safety_factor=0.72, ultimate_tensile_strength=None)`: DNV RP-F101 single-defect result.
+- `CorrosionFeature`: pipe, material, and corrosion-feature inputs from `models.py`.
+- `original_b31g(feature, safety_factor=0.72)`: original B31G result from `b31g.py`.
+- `modified_b31g(feature, safety_factor=0.72, flow_stress_increment=10_000)`: Modified B31G result from `b31g.py`.
+- `dnv_rp_f101(feature, safety_factor=0.72, ultimate_tensile_strength=None)`: DNV RP-F101 single-defect result from `dnv.py`.
 - `rstreng_effective_area(feature, profile, safety_factor=0.72, flow_stress_increment=10_000)`: RSTRENG-style
-  effective-area result from river-bottom profile points.
+  effective-area result from river-bottom profile points in `rstreng.py`.
 - `compare_methods(feature, profile=None, safety_factor=0.72, flow_stress_increment=10_000, ultimate_tensile_strength=None)`: returns all
   requested method results for analysis.
 - `compare_feature_records(feature, profile=None, safety_factor=0.72, flow_stress_increment=10_000, ultimate_tensile_strength=None)`: returns

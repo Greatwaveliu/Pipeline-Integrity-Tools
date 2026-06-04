@@ -5,6 +5,13 @@ combined with probabilistic/Bayesian workflows built around in-line inspection
 (ILI) data.
 """
 
+from .analysis import compare_feature_records, compare_methods
+from .b31g import (
+    modified_b31g,
+    modified_b31g_folias,
+    original_b31g,
+    original_b31g_folias,
+)
 from .config import (
     AnalysisConfig,
     AnalysisSettings,
@@ -16,18 +23,9 @@ from .config import (
     run_config_file,
     write_records_csv,
 )
-from .b31g import (
-    AssessmentResult,
-    CorrosionFeature,
-    compare_methods,
-    compare_feature_records,
-    dnv_rp_f101,
-    dnv_rp_f101_folias,
-    modified_b31g,
-    original_b31g,
-    results_to_records,
-    rstreng_effective_area,
-)
+from .dnv import dnv_rp_f101, dnv_rp_f101_folias
+from .models import AssessmentResult, CorrosionFeature, results_to_records
+from .rstreng import rstreng_effective_area
 
 __all__ = [
     "AnalysisConfig",
@@ -42,7 +40,9 @@ __all__ = [
     "dnv_rp_f101",
     "dnv_rp_f101_folias",
     "modified_b31g",
+    "modified_b31g_folias",
     "original_b31g",
+    "original_b31g_folias",
     "load_config",
     "results_to_records",
     "run_config",

@@ -1,14 +1,9 @@
 from math import isclose
 
-from pipeline_integrity_tools import (
-    CorrosionFeature,
-    compare_feature_records,
-    compare_methods,
-    dnv_rp_f101,
-    modified_b31g,
-    original_b31g,
-    rstreng_effective_area,
-)
+from pipeline_integrity_tools import CorrosionFeature, compare_feature_records, compare_methods
+from pipeline_integrity_tools.b31g import modified_b31g, original_b31g
+from pipeline_integrity_tools.dnv import dnv_rp_f101
+from pipeline_integrity_tools.rstreng import rstreng_effective_area
 
 
 def test_original_b31g_matches_hand_calculation_short_defect():

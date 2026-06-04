@@ -13,7 +13,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
-from .b31g import CorrosionFeature, compare_feature_records
+from .analysis import compare_feature_records
+from .models import CorrosionFeature
 
 
 ProfilePoint = tuple[float, float]
